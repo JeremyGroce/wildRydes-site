@@ -19,7 +19,7 @@
       overflow: hidden;
       position: fixed;
       width: 100%;
-      top: 0;
+      bottom: 0;
       z-index: 1000;
     }
 
@@ -36,12 +36,12 @@
     <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
       <div class="stock-price">Arabian <span class="percentage"></span></div>
       <div class="stock-price">Thoroughbred <span class="percentage"></span></div>
+      <div class="stock-price">Two Guys in a Horse Costume <span class="percentage"></span></div>
       <div class="stock-price">Clydesdale <span class="percentage"></span></div>
       <div class="stock-price">Appaloosa <span class="percentage"></span></div>
       <div class="stock-price">Unicorn <span class="percentage"></span></div>
       <div class="stock-price">Pegasus <span class="percentage"></span></div>
       <div class="stock-price">Centaur <span class="percentage"></span></div>
-      <div class="stock-price">Two Guys in a Horse Costume <span class="percentage"></span></div>
       <div class="stock-price">Death <span class="percentage"></span></div>
       <div class="stock-price">War <span class="percentage"></span></div>
       <div class="stock-price">Famine <span class="percentage"></span></div>
@@ -62,7 +62,13 @@
     const color = percentage < 5 ? 'green' : 'red';
     element.querySelector('.percentage').innerHTML = `  <span style="color: ${color};">${formattedPercentage}%</span>`;
   }
-  
+  const marquee = document.querySelector('marquee');
+
+  // clone the original elements and append them to the marquee to create seamless scroll
+  const originalElements = Array.from(document.querySelectorAll('.stock-price'));
+  const clonedElements = originalElements.map(original => original.cloneNode(true));
+  marquee.append(...clonedElements);
+
   const stockPrices = document.querySelectorAll('.stock-price');
   
   stockPrices.forEach(element => updatePercentage(element));
