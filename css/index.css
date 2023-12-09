@@ -21,6 +21,7 @@ textarea {
 body {
     font-size: 1em;
     line-height: 1.4;
+    cursor: ("./images/amogus.png");
 }
 
 /*
@@ -102,6 +103,8 @@ textarea {
 /* Generic */
 
 body{
+
+
   width: 100vw;
   height: 100vh;
 

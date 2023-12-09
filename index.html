@@ -10,9 +10,65 @@
   <link rel="stylesheet" href="css/main.css">
 
   <script src="js/vendor/modernizr.js"></script>
+
+  <style>
+    #stock-ticker {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      overflow: hidden;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .stock-price {
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+  </style>
 </head>
 <body class="page-home">
+  <div id="stock-ticker">
 
+    <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+      <div class="stock-price">Arabian <span class="percentage"></span></div>
+      <div class="stock-price">Thoroughbred <span class="percentage"></span></div>
+      <div class="stock-price">Clydesdale <span class="percentage"></span></div>
+      <div class="stock-price">Appaloosa <span class="percentage"></span></div>
+      <div class="stock-price">Unicorn <span class="percentage"></span></div>
+      <div class="stock-price">Pegasus <span class="percentage"></span></div>
+      <div class="stock-price">Centaur <span class="percentage"></span></div>
+      <div class="stock-price">Two Guys in a Horse Costume <span class="percentage"></span></div>
+      <div class="stock-price">Death <span class="percentage"></span></div>
+      <div class="stock-price">War <span class="percentage"></span></div>
+      <div class="stock-price">Famine <span class="percentage"></span></div>
+      <div class="stock-price">Conquest <span class="percentage"></span></div>
+    </marquee>
+  </div>
+  
+  <script>
+  function updatePercentage(element) {
+    const percentage = Math.random() * 10;
+    const formattedPercentage = percentage.toFixed(2);
+  
+    // set random update interval
+    const randomInterval = Math.floor(Math.random() * 2000) + 1000; 
+    setTimeout(() => updatePercentage(element), randomInterval);
+  
+    // make percentage red or green
+    const color = percentage < 5 ? 'green' : 'red';
+    element.querySelector('.percentage').innerHTML = `  <span style="color: ${color};">${formattedPercentage}%</span>`;
+  }
+  
+  const stockPrices = document.querySelectorAll('.stock-price');
+  
+  stockPrices.forEach(element => updatePercentage(element));
+  </script>
+  
+  
   <header class="site-header">
     <h1 class="title">Wild Rydes</h1>
     <nav class="site-nav">
@@ -160,5 +216,7 @@
   <script src="js/vendor.js"></script>
 
   <script src="js/main.js"></script>
+
+  
 </body>
 </html>
